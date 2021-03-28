@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="root" prefHeight="742.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.IndexController">
+   <children>
+      <VBox id="aside" fillWidth="false" prefHeight="220.0" prefWidth="220.0">
+         <children>
+            <ImageView id="favicon" fx:id="favicon" fitHeight="161.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="58.0" prefWidth="261.0">
+               <children>
+                  <ProgressBar id="progressForData" fx:id="progressForData" prefHeight="9.0" prefWidth="239.0" progress="0.0" />
+                  <Label id="dosageForData" fx:id="dosageForData" prefHeight="18.0" prefWidth="225.0" textAlignment="CENTER" textFill="#c2c2c2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox id="aside" fillWidth="false" layoutY="212.0" prefHeight="531.0" prefWidth="220.0">
+         <children>
+            <VBox prefHeight="152.0" prefWidth="217.0">
+               <children>
+                  <Pane prefHeight="47.0" prefWidth="200.0">
+                     <children>
+                        <ImageView id="fileImage" fx:id="fileImage" fitHeight="36.0" fitWidth="35.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="allFile" layoutX="63.0" layoutY="15.0" prefHeight="36.0" prefWidth="137.0" text="全部文件">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="47.0" prefWidth="200.0">
+                     <children>
+                        <ImageView id="fileImage" fx:id="folderImage" fitHeight="36.0" fitWidth="35.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="folder" layoutX="63.0" layoutY="15.0" prefHeight="36.0" prefWidth="130.0" text="选择文件夹">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="47.0" prefWidth="200.0">
+                     <children>
+                        <ImageView id="fileImage" fx:id="keyImage" fitHeight="36.0" fitWidth="35.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="key" layoutX="63.0" layoutY="15.0" prefHeight="36.0" prefWidth="130.0" text="密钥设置">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

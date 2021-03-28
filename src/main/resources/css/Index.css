@@ -1,0 +1,22 @@
+
+/* 进度条 */
+#progressForData {
+    /*-fx-accent:rgb(56,132,255); !* 设置进度条左颜色 *!*/
+    -fx-control-inner-background: rgb(219,219,219); /* 进度条底色 */
+}
+
+/* aside */
+#aside {
+    -fx-background-color: rgb(246,246,246);
+    -fx-border-color: rgb(226,226,226);
+}
+
+/* 总界面 */
+#root {
+    -fx-background-color: rgb(256,256,256);
+}
+
+#fileImage {
+
+}
+
