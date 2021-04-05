@@ -74,56 +74,6 @@ public class AES {
 		return null;
 	}
 
-	/**
-	 * 对文件进行AES加密
-	 *
-	 * @param sourceFile
-	 * @param fileType
-	 * @param sKey
-	 * @return
-	 */
-	public static File encryptFile(File sourceFile, File encrypfile, String sKey) {
-
-		InputStream inputStream = null;
-		OutputStream outputStream = null;
-		try {
-			inputStream = new FileInputStream(sourceFile);
-
-			outputStream = new FileOutputStream(encrypfile);
-			Cipher cipher = initAESCipher(sKey, Cipher.ENCRYPT_MODE);
-			// 以加密流写入文件
-			CipherInputStream cipherInputStream = new CipherInputStream(
-					inputStream, cipher);
-			byte[] cache = new byte[1024];
-			int nRead = 0;
-			while ((nRead = cipherInputStream.read(cache)) != -1) {
-				outputStream.write(cache, 0, nRead);
-				outputStream.flush();
-			}
-			cipherInputStream.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace(); // To change body of catch statement use File |
-			// Settings | File Templates.
-		} catch (IOException e) {
-			e.printStackTrace(); // To change body of catch statement use File |
-			// Settings | File Templates.
-		} finally {
-			try {
-				inputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace(); // To change body of catch statement use
-				// File | Settings | File Templates.
-			}
-			try {
-				outputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace(); // To change body of catch statement use
-				// File | Settings | File Templates.
-			}
-		}
-		return encrypfile;
-	}
-
 
 	/**
 	 * AES方式解密文件
@@ -211,8 +161,6 @@ public class AES {
 		File encrypfile = new File("C:\\Users\\Administrator\\Desktop\\encryp.mp4");
 		//解密后的文件路径
 		File decrypfile = new File("C:\\Users\\Administrator\\Desktop\\decryp.mp4");
-		//加密文件
-		encryptFile(oldfile, encrypfile, cKey);
 		//解密文件
 		decryptFile(encrypfile, decrypfile, cKey);
 

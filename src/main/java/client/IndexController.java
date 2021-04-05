@@ -1,9 +1,7 @@
 package client;
 
+import common.StageManage;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -13,14 +11,11 @@ import javafx.stage.*;
 import server.Controller;
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class IndexController {
 
     private static IndexController indexController = new IndexController();
-
-    public static Stage keyStage = null;
 
     /**
      * 在Main函数中会调用该函数
@@ -94,7 +89,7 @@ public class IndexController {
      */
     @FXML
     public void initialize() {
-        favicon.setImage(new Image(getClass().getResource(IData.favicon).toExternalForm())); //设置Logo图片
+        favicon.setImage(new Image(getClass().getResource(IData.favicon).toExternalForm(),218.0,156.0,false,false)); //设置Logo图片
         fileImage.setImage(new Image(getClass().getResource(IData.fileImage).toExternalForm())); //设置文件图片
         folderImage.setImage(new Image(getClass().getResource(IData.folderImage).toExternalForm())); //文件夹图片
         keyImage.setImage(new Image(getClass().getResource(IData.keyImage).toExternalForm())); //密钥图片
@@ -167,27 +162,23 @@ public class IndexController {
         } catch (NullPointerException e) {
             System.out.println("未选择文件夹");
         }
-        // 123
 
     }
 
     @FXML
-    public void pressKey() throws IOException {
-        // todo IO异常处理
+    public void pressKey() {
 
         /*
-        页面资源载入
+         * 如果KeyStage已经显示了
+         * 先关闭在显示，方便用户寻找，防止mainStage覆盖keyStage
          */
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/KeySetting.fxml"));
-        parent.getStylesheets().setAll(getClass().getResource("/css/KeySetting.css").toExternalForm());
-
-        keyStage = new Stage();
-        keyStage.setX(Main.getStage().getX() + 200);
-        keyStage.setY(Main.getStage().getY() + 100);
-        keyStage.setResizable(false); // 固定窗口大小
-        keyStage.setScene(new Scene(parent, IData.keySettingWidth, IData.keySettingHeight));
-        keyStage.setTitle("密钥设置");
-        keyStage.show();
+        if(StageManage.getKeyStage().isShowing()) {
+            StageManage.getKeyStage().close();
+        }
+        /*
+         * 调用Stage管理者获得Stage并展示
+         */
+        StageManage.getKeyStage().show();
     }
 
     @FXML

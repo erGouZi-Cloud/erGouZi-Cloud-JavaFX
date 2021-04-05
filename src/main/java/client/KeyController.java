@@ -1,12 +1,15 @@
 package client;
 
+import common.StageManage;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import server.service.EncryptService;
+import server.service.SettingKeyService;
 
 
 /**
@@ -22,23 +25,50 @@ public class KeyController {
     private PasswordField confirmKey;
     @FXML
     private Label errorAlert;
-
+    @FXML
+    private Pane keySetPane;
+    @FXML
+    private Pane confirmChangeKeyPane;
 
     @FXML
     public void SettingByClick() {
 
     }
+
+
+    @FXML
+    public void resetKey() {
+        confirmChangeKeyPane.setVisible(false);
+        keySetPane.setVisible(true);
+    }
+
+    @FXML
+    public void denySetKey() {
+        StageManage.closeKeyStage();
+    }
+
+    /**
+     * 按下确认修改密钥按键
+     */
     @FXML
     public void setKey() {
         if(!isDiffKey()) {
-            EncryptService.setKey(confirmKey.getText());
-            IndexController.keyStage.close();
-            IndexController.keyStage = null; // 置空，让GC对内存进行处理
+            SettingKeyService.setKey(confirmKey.getText());
+            StageManage.closeKeyStage(); //调用Stage管理者，进行关闭页面
         }
     }
 
     @FXML
     public void initialize() {
+        if(SettingKeyService.isKeyExist()) {
+            // 存在key,显示确认是否重新设置密码界面
+            confirmChangeKeyPane.setVisible(true);
+            keySetPane.setVisible(false);
+        } else {
+            // 不存在key，直接跳过进入设置密钥界面
+            confirmChangeKeyPane.setVisible(false);
+            keySetPane.setVisible(true);
+        }
 
         errorAlert.setVisible(false);
 
